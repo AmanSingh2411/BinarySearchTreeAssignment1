@@ -46,7 +46,20 @@ public class MyBinarySearchTree<E extends Comparable<E>> implements BinarySearch
 
     @Override
     public boolean search(E searchElement) {
-        return false;
+        Node<E> temp = root;
+        boolean response = false;
+        while (temp != null) {
+            if (searchElement.compareTo(temp.getData()) < 0) {
+                temp = temp.getLeft();
+            } else if (searchElement.compareTo(temp.getData()) > 0) {
+                temp = temp.getRight();
+            } else {
+                response = true;
+                break;
+            }
+        }
+
+        return response;
     }
 
     @Override
@@ -77,5 +90,8 @@ public class MyBinarySearchTree<E extends Comparable<E>> implements BinarySearch
     @Override
     public int height(Node<E> node) {
         return 0;
+    }
+    public boolean isEmpty(){
+        return root == null;
     }
 }
